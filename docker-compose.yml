@@ -1,0 +1,25 @@
+version: '2'
+services:
+  backend:
+    container_name: docker-demo-backend
+    build:
+      context: docker-demo-backend
+      dockerfile: Dockerfile
+    image: docker-demo-backend:latest
+    ports:
+      - "2020:8080"
+    networks:
+      - spring-cloud-network
+  frontend:
+    container_name: docker-demo-frontend
+    build:
+      context: docker-demo-frontend
+      dockerfile: Dockerfile
+    image: docker-demo-frontend:latest
+    ports:
+      - "4040:8080"
+    networks:
+      - spring-cloud-network
+networks:
+  spring-cloud-network:
+    driver: bridge
